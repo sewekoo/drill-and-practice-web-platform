@@ -18,4 +18,4 @@ jobs:
           deno-version: "v1.29.2"
 
       - name: Run tests
-        run: deno test --allow-all
+        run: deno test --allow-net --allow-env --allow-read
