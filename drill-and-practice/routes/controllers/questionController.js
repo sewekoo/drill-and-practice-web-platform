@@ -81,4 +81,9 @@ const deleteOption = async ({ response, params }) => {
     response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
 };
 
-export { addQuestion, showQuestion, addOption, deleteOption };
+const deleteQuestion = async ({ response, params }) => {
+    await questionService.deleteQuestionById(params.qId);
+    response.redirect(`/topics/${params.tId}`);
+};
+
+export { addQuestion, showQuestion, addOption, deleteOption, deleteQuestion };

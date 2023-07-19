@@ -46,6 +46,7 @@ const showTopic = async ({ render, params }) => {
 const deleteTopic = async ({ response, params, state }) => {
     const user = await state.session.get("user");
     if (user.admin) {
+        await questionService.deleteQuestionWithTopicId(params.id);
         await topicService.deleteTopic(params.id);
     }
     response.redirect("/topics");

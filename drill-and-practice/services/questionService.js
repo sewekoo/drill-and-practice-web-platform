@@ -1,4 +1,5 @@
 import { sql } from "../database/database.js";
+import * as optionService from "../services/optionService.js";
 
 // Query to create a new question with given parameters
 const addQuestion = async (userId, topicId, questionText) => {
@@ -44,4 +45,19 @@ const randomQuestionAnyTopic = async () => {
     }
 };
 
-export { addQuestion, listQuestion, listQuestions, countQuestions, randomQuestion, randomQuestionAnyTopic };
+const deleteQuestionWithTopicId = async (topicId) => {
+    const rows = await sql`SELECT * FROM questions WHERE topic_id = ${topicId}`;
+    rows.forEach(async i => {
+        await optionService.deleteAnswersByQuestionId(i.id);
+        await optionService.deleteOptionByQuestionId(i.id);
+    });
+    await sql`DELETE FROM questions WHERE topic_id = ${topicId}`;
+};
+
+const deleteQuestionById = async (questionId) => {
+    await optionService.deleteAnswersByQuestionId(questionId);
+    await optionService.deleteOptionByQuestionId(questionId);
+    await sql`DELETE FROM questions WHERE id = ${questionId}`;
+};
+
+export { addQuestion, listQuestion, listQuestions, countQuestions, randomQuestion, randomQuestionAnyTopic, deleteQuestionWithTopicId, deleteQuestionById };

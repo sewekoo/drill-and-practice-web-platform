@@ -18,6 +18,7 @@
 </ul>
 <% } else { %>
 <p>No options available.</p>
+<form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id %>/delete"><input type="submit" value="Delete question" /></form>
 <% } %> 
 
 <h2>Add new answer option</h2>
@@ -39,3 +40,5 @@ Correct? <br/>
 <input type="checkbox" name="is_correct" <% if (it.is_correct) { %> checked <% } %> /><br/>
 <input type="submit" value="Add" /><br/>
 </form>
+
+<p><a href="/topics/<%= it.question.topic_id %>">Back to topic</a></p>
