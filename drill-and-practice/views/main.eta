@@ -1,0 +1,12 @@
+<% layout("./layouts/layout.eta") %>
+
+<a href="/topics">See topics</a><br/>
+<a href="/auth/login">Login</a><br/>
+<a href="/auth/register">Register</a><br/>
+
+<h2>Statistics</h2>
+<table>
+<tr><td>Topics created</td><td><%= it.topicCount %></td></tr>
+<tr><td>Questions created</td><td><%= it.questionCount %></td></tr>
+<tr><td>Questions answered</td><td><%= it.answerCount %></td></tr>
+</table>
