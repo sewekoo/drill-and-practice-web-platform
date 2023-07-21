@@ -9,6 +9,7 @@ import * as quizApi from "./apis/quizApi.js";
 
 const router = new Router();
 
+// Different routes for the app:
 router.get("/", mainController.showMain);
 router.get("/topics", topicController.showTopics);
 router.post("/topics", topicController.addTopic);

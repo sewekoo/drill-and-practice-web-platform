@@ -3,16 +3,19 @@ import * as topicService from "../../services/topicService.js";
 import * as optionService from "../../services/optionService.js";
 import { validasaur } from "../../deps.js";
 
+// Validation rules for questions
 const questionValidationRules = {
     question_text: [validasaur.required, validasaur.minLength(1)],
     user: [validasaur.required],
 };
 
+// Validation rules for options
 const optionValidationRules = {
     option_text: [validasaur.required, validasaur.minLength(1)],
     is_correct: [validasaur.required],
 };
 
+// Validates input and adds question
 const addQuestion = async ({ response, params, request, state, render }) => {
     const body = request.body({ type: "form" });
     const paramsForm = await body.value;
@@ -40,12 +43,14 @@ const addQuestion = async ({ response, params, request, state, render }) => {
     }
 };
 
+// Shows a question specified by url parameters.
 const showQuestion = async ({ render, params }) => {
     const currentQuestion = await questionService.listQuestion(params.id, params.qId);
     const currentOptions = await optionService.listOptions(params.qId);
     render("question.eta", { question: currentQuestion, options: currentOptions })
 };
 
+// Validates data and adds answer option to question specified by url parameters.
 const addOption = async ({ response, params, request, render }) => {
     const body = request.body({ type: "form" });
     const paramsForm = await body.value;
@@ -76,11 +81,13 @@ const addOption = async ({ response, params, request, render }) => {
     }
 };
 
+// Deletes option specified by url parameters
 const deleteOption = async ({ response, params }) => {
     await optionService.deleteOption(params.qId, params.oId);
     response.redirect(`/topics/${params.tId}/questions/${params.qId}`);
 };
 
+// Deletes question specified by url parameters
 const deleteQuestion = async ({ response, params }) => {
     await questionService.deleteQuestionById(params.qId);
     response.redirect(`/topics/${params.tId}`);

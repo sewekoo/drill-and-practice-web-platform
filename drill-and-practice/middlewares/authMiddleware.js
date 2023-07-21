@@ -1,5 +1,6 @@
 const restrictedPaths = ["/topics", "/quiz"];
 
+// Middleware to force authentication for certain paths.
 const authMiddleware = async (context, next) => {
     const user = await context.state.session.get("user");
 

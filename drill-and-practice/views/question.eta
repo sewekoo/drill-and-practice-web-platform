@@ -2,6 +2,8 @@
 <h1><%= it.question.question_text %></h1>
 
 <h2>Options</h2>
+<p>You can add options to selected questions from the form below. Check the box if that answer will be correct.</p>
+<p>You can also delete options from the list below. If all options have been deleted you can delete the question itself.</p>
 <% if (it.options && it.options.length > 0) { %>
 <ul>
 <% it.options.forEach(option => { %>

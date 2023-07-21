@@ -22,11 +22,13 @@ const listQuestions = async (topicId) => {
     return rows;
 };
 
+// Query to count all questions
 const countQuestions = async (topicId) => {
     const rows = await sql`SELECT * FROM questions WHERE topic_id = ${topicId}`;
     return rows.length;
 };
 
+// Query to quiz random question
 const randomQuestion = async (topicId) => {
     const rows = await sql`SELECT * FROM questions WHERE topic_id = ${topicId} ORDER BY random()`;
     if (rows && rows.length > 0) {
@@ -36,6 +38,7 @@ const randomQuestion = async (topicId) => {
     }
 };
 
+// Query to quiz random question from any topic (for API)
 const randomQuestionAnyTopic = async () => {
     const rows = await sql`SELECT * FROM questions ORDER BY random()`;
     if (rows && rows.length > 0) {
@@ -45,6 +48,7 @@ const randomQuestionAnyTopic = async () => {
     }
 };
 
+// Query to delete questions with certain topic. Also deletes related questions, options and answers.
 const deleteQuestionWithTopicId = async (topicId) => {
     const rows = await sql`SELECT * FROM questions WHERE topic_id = ${topicId}`;
     rows.forEach(async i => {
@@ -54,6 +58,7 @@ const deleteQuestionWithTopicId = async (topicId) => {
     await sql`DELETE FROM questions WHERE topic_id = ${topicId}`;
 };
 
+// Query to delete question by id.
 const deleteQuestionById = async (questionId) => {
     await optionService.deleteAnswersByQuestionId(questionId);
     await optionService.deleteOptionByQuestionId(questionId);

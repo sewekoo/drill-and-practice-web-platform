@@ -1,6 +1,8 @@
 <% layout("./layouts/layout.eta") %>
 <h1>Topics</h1>
 
+<p>Click on a topic to select it and start adding questions to it!</p>
+
 <% if (it.topics && it.topics.length > 0) { %>
 <ul>
 <% it.topics.forEach(topic => { %>
@@ -18,6 +20,7 @@
 
 <% if (it.user && it.user.admin) { %>
     <h2>Add new topic</h2>
+    <p>Add new topics to the application with the form below. As admin you can also delete existing topics from the list above.</p>
 
     <% if (it.validationErrors) { %>
     <ul>

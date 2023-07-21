@@ -1,10 +1,12 @@
 import * as userService from "../../services/userService.js";
 import { bcrypt } from "../../deps.js";
 
+// Renders login page
 const showLoginForm = ({ render }) => {
     render("login.eta");
 };
 
+// Prorecesses login info.
 const processLogin = async ({ request, response, state }) => {
     const body = request.body({ type: "form" });
     const params = await body.value;
@@ -38,6 +40,7 @@ const processLogin = async ({ request, response, state }) => {
     response.redirect("/topics");
 };
 
+// Logs user out.
 const logout = async ({ response, state }) => {
     await state.session.set("authenticated", null);
     await state.session.set("user", null);

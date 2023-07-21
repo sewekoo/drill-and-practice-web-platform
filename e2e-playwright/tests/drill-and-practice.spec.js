@@ -7,7 +7,7 @@ test("Main page has title 'Drill and Practice'. This test might not pass on firs
 
 test("Main page has h2 element 'Statistics'", async ({ page }) => {
     await page.goto("/");
-    await expect(page.locator("h2")).toHaveText("Statistics");
+    await expect(page.getByRole('heading', { name: 'Statistics' })).toHaveText("Statistics");
 });
 
 test("Main page shows statistics.", async ({ page }) => {
@@ -190,18 +190,6 @@ test("Adding new questions and options to newly created topic", async ({ page })
     await page.getByRole('checkbox').check();
     await page.locator("input[type=submit]>> text='Add'").click();
     await expect(page.locator("li")).toHaveCount(7);
-});
-
-test("Quiz topics page can be accessed and has created topic listed", async ({ page }) => {
-    await page.goto("/auth/login");
-    await expect(page.locator("h1")).toHaveText("Login form");
-    await page.locator("input[type=email]").type("admin@admin.com");
-    await page.locator("input[type=password]").type("123456");
-    await page.locator("input[type=submit]>> text='Login'").click();
-    await expect(page.locator("h1")).toHaveText("Topics");
-    await page.getByRole('link', { name: 'Quiz' }).click();
-    await expect(page.locator("h1")).toHaveText("Quiz topics");
-    await expect(page.locator("li >> text ='Math'")).toHaveText("Math");
 });
 
 test("Quiz topics page can be accessed and has created topic listed", async ({ page }) => {

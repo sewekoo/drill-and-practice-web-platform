@@ -1,5 +1,6 @@
 import * as statisticsService from "../../services/statisticsService.js";
 
+// Renders main page and requests statistics
 const showMain = async ({ render }) => {
   const topics = await statisticsService.countAllTopics();
   const questions = await statisticsService.countAllQuestions();

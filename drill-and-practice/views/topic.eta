@@ -3,6 +3,8 @@
 
 <h2>Add a question!</h2>
 
+<p>Add questions to your selected topic with the form below. You can choose to select a question to add options by clicking existing question from the list at the bottom.</p>
+
 <% if (it.validationErrors) { %>
 <ul>
     <% Object.keys(it.validationErrors).forEach((attribute) => { %>
@@ -31,4 +33,6 @@ Question text: <br/>
 </ul>
 <% } else { %>
 <p>No questions available.</p>
-<% } %> 
+<% } %>
+
+<p><a href="/topics">Back to topics</a></p>
