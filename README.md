@@ -1,5 +1,7 @@
 # Drill and Practice - Practice platform
 
+A course project done for Web Software Development CS-C3170 course in Aalto University.
+
 ## Description & instructions
 Drill and practice platform is web application for studying and rehearsing different topics. 
 Web application can be navigated with navbar on top of the page. 
